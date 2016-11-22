@@ -9,10 +9,13 @@ class LulalalaAddressTokenizer
 
   # @params address [String]
   def parse(address)
+    address = address.tr(" \t",'')
+
     segments = []
     address.chars.each do |ch|
       segments << "#{ch} n"
     end
+
     result = @model.label [segments]
     join(result.first)
   end
